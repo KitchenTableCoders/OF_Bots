@@ -36,19 +36,19 @@ void OFApp::update(){
 	for(int i = 0; i < botsVec.size(); i++)
 	{
 
-		bool isThisBotTouchingOtherBot = false;
+		// One (unimplemented) optimization is to skip this entire loop here if we already know the bot has collided. Try implementing it!
+		
+		bool isThisBotTouchingOtherBot = false; 
 		
 		// for each bot, go through all the others and see if there's a collision.
 		// this is a very un-optimized way of doing collision, but it does the job for up to a few hundred bots.
 		for(int k = 0; k  < botsVec.size(); k++)
 		{
+		
 			
-			// One optimization is to skip this entire loop here if we already know the bot has collided
-			// Try implementing it!
-			
-			if(k != i) // don't check the bot against itself. 
+			if(k != i) // don't check the bot against itself (or you'll always get a TRUE)
 			{
-				// the BotsPolice class is in charge of checking collision. We just pass it two pointers to the bots we're checking
+				// the BotsPolice class is in charge of checking collision. We just pass it two Bots pointers to check
 				isThisBotTouchingOtherBot = botsPolice.checkIfTouching(botsVec[i] , botsVec[k]);
 				// if collition found, stop running the loop and move below.
 				if(isThisBotTouchingOtherBot) break;
